@@ -39,19 +39,13 @@ export default function Home() {
               <p className="text-xl md:text-2xl mb-8 text-slate-100">
                 未経験者歓迎・年間休日120日以上・充実した福利厚生
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex justify-center">
                 <Link
                   href="/careers"
                   className="bg-emerald-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-emerald-600 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-2xl backdrop-blur-sm"
                 >
                   採用情報を見る
                   <ArrowRight className="ml-2" size={20} />
-                </Link>
-                <Link
-                  href="/about"
-                  className="border-2 border-white/50 text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300 hover:border-white backdrop-blur-sm"
-                >
-                  会社概要
                 </Link>
               </div>
             </div>
@@ -129,7 +123,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.1 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
+                className="flex justify-center"
               >
               <motion.div
                 whileHover={{ 
@@ -158,31 +152,6 @@ export default function Home() {
                   >
                     <ArrowRight className="ml-2" size={20} />
                   </motion.div>
-                </Link>
-              </motion.div>
-              <motion.div
-                whileHover={{ 
-                  scale: 1.15, 
-                  y: -5,
-                  transition: { duration: 0.4 }
-                }}
-                whileTap={{ 
-                  scale: 0.85,
-                  transition: { duration: 0.2 }
-                }}
-              >
-                <Link
-                  href="/about"
-                  className="border-2 border-white/50 text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300 hover:border-white backdrop-blur-sm"
-                >
-                  <motion.span
-                    whileHover={{ 
-                      scale: 1.1,
-                      transition: { duration: 0.2 }
-                    }}
-                  >
-                    会社概要
-                  </motion.span>
                 </Link>
               </motion.div>
             </motion.div>

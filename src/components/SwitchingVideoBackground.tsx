@@ -106,7 +106,7 @@ export default function SwitchingVideoBackground() {
       {videos.map((video, index) => (
         <motion.video
           key={index}
-          ref={el => videoRefs.current[index] = el}
+          ref={el => { videoRefs.current[index] = el }}
           autoPlay={index === currentVideoIndex}
           loop
           muted

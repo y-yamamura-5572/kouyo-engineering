@@ -23,7 +23,6 @@ export default function OptimizedVideoBackground() {
     const video = videoRef.current
     if (!video) return
 
-    let fallbackTimer: NodeJS.Timeout
     let playTimer: NodeJS.Timeout
 
     const handleLoadedMetadata = () => {
@@ -85,7 +84,7 @@ export default function OptimizedVideoBackground() {
     video.addEventListener('pause', handlePause)
 
     // 3秒後にフォールバックを表示（テスト用に短縮）
-    fallbackTimer = setTimeout(() => {
+    const fallbackTimer = setTimeout(() => {
       if (!videoState.loaded || !videoState.playing) {
         console.log('Video loading/playing timeout, showing fallback')
         setVideoState(prev => ({ ...prev, showFallback: true }))
