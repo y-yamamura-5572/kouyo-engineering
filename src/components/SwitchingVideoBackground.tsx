@@ -18,7 +18,7 @@ export default function SwitchingVideoBackground() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const [mounted, setMounted] = useState(false)
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
-  const [videosReady, setVideosReady] = useState<boolean[]>([false, false])
+  const [videoReady, setVideoReady] = useState(false)
   const [useFallback, setUseFallback] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
@@ -26,77 +26,63 @@ export default function SwitchingVideoBackground() {
     setMounted(true)
   }, [])
 
-  // 自動切り替え（8秒間隔）
+  // 動画切り替え管理（シンプル版）
   useEffect(() => {
-    if (!mounted || useFallback) return
+    if (!mounted) return
+    
+    console.log(`Switching to video ${currentVideoIndex}`)
+    
+    // 全ての動画を停止
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        video.pause()
+        video.currentTime = 0
+      }
+    })
 
-    const interval = setInterval(() => {
+    // 現在の動画を設定
+    const currentVideo = videoRefs.current[currentVideoIndex]
+    if (!currentVideo) return
+
+    const playCurrentVideo = async () => {
+      try {
+        setVideoReady(false)
+        currentVideo.currentTime = 0
+        await currentVideo.play()
+        setVideoReady(true)
+        console.log(`Video ${currentVideoIndex} is now playing`)
+      } catch (err) {
+        console.error(`Video ${currentVideoIndex} play failed:`, err)
+        setUseFallback(true)
+      }
+    }
+
+    const handleEnded = () => {
+      console.log(`Video ${currentVideoIndex} ended`)
       if (!isTransitioning) {
         setIsTransitioning(true)
         setCurrentVideoIndex(prev => (prev + 1) % videos.length)
-        
-        // トランジション完了後にフラグをリセット
-        setTimeout(() => setIsTransitioning(false), 1000)
+        setTimeout(() => setIsTransitioning(false), 500)
       }
-    }, 8000)
+    }
 
-    return () => clearInterval(interval)
-  }, [mounted, useFallback, isTransitioning])
-
-  useEffect(() => {
-    if (!mounted) return
-
-    videos.forEach((video, index) => {
-      const videoElement = videoRefs.current[index]
-      if (!videoElement) return
-
+    currentVideo.addEventListener('ended', handleEnded)
+    
+    // 動画が準備できていれば即座に再生、そうでなければ準備を待つ
+    if (currentVideo.readyState >= 3) {
+      playCurrentVideo()
+    } else {
       const handleCanPlay = () => {
-        console.log(`Video ${index} can play`)
-        setVideosReady(prev => {
-          const newReady = [...prev]
-          newReady[index] = true
-          return newReady
-        })
-        
-        if (index === currentVideoIndex) {
-          videoElement.play().catch(err => {
-            console.error(`Video ${index} play failed:`, err)
-            setUseFallback(true)
-          })
-        }
+        currentVideo.removeEventListener('canplay', handleCanPlay)
+        playCurrentVideo()
       }
+      currentVideo.addEventListener('canplay', handleCanPlay)
+    }
 
-      const handleError = () => {
-        console.error(`Video ${index} error`)
-        setUseFallback(true)
-      }
-
-      videoElement.addEventListener('canplay', handleCanPlay)
-      videoElement.addEventListener('error', handleError)
-
-      return () => {
-        videoElement.removeEventListener('canplay', handleCanPlay)
-        videoElement.removeEventListener('error', handleError)
-      }
-    })
-  }, [mounted, currentVideoIndex])
-
-  // 現在の動画を再生、他の動画を一時停止
-  useEffect(() => {
-    if (!mounted) return
-
-    videoRefs.current.forEach((video, index) => {
-      if (!video || !videosReady[index]) return
-
-      if (index === currentVideoIndex) {
-        video.play().catch(err => {
-          console.error(`Video ${index} play failed:`, err)
-        })
-      } else {
-        video.pause()
-      }
-    })
-  }, [currentVideoIndex, videosReady, mounted])
+    return () => {
+      currentVideo.removeEventListener('ended', handleEnded)
+    }
+  }, [mounted, currentVideoIndex, isTransitioning])
 
   if (!mounted) {
     return (
@@ -127,7 +113,7 @@ export default function SwitchingVideoBackground() {
           playsInline
           initial={{ opacity: 0 }}
           animate={{ 
-            opacity: index === currentVideoIndex && videosReady[index] ? 1 : 0 
+            opacity: index === currentVideoIndex ? 1 : 0 
           }}
           transition={{ duration: 1, ease: "easeInOut" }}
           className="absolute inset-0 w-full h-full object-cover z-10"
@@ -168,8 +154,9 @@ export default function SwitchingVideoBackground() {
           <motion.button
             key={index}
             onClick={() => {
-              if (!isTransitioning) {
+              if (!isTransitioning && index !== currentVideoIndex) {
                 setIsTransitioning(true)
+                setVideoReady(false)
                 setCurrentVideoIndex(index)
                 setTimeout(() => setIsTransitioning(false), 1000)
               }
