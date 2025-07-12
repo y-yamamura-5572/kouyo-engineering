@@ -48,7 +48,7 @@ export default function SwitchingVideoBackground() {
         currentVideo.currentTime = 0
         await currentVideo.play()
         setVideoReady(true)
-      } catch (err) {
+      } catch {
         setUseFallback(true)
       }
     }
