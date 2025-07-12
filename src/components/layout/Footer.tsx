@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, ArrowRight, Instagram, ExternalLink } from 'lucide-react'
+import { Mail, Phone, MapPin, Instagram, ExternalLink } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export default function Footer() {
