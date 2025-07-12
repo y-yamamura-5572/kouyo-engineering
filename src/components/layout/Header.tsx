@@ -11,11 +11,7 @@ export default function Header() {
   const [isClient, setIsClient] = useState(false)
 
   const navigation = [
-    { name: '会社概要', href: '/about' },
-    { name: '業務内容', href: '/services' },
-    { name: '施工実績', href: '/projects' },
-    { name: '採用情報', href: '/careers' },
-    { name: 'お問い合わせ', href: '/contact' }
+    { name: '採用情報', href: '/careers' }
   ]
 
   useEffect(() => {
@@ -38,7 +34,7 @@ export default function Header() {
               />
             </Link>
             
-            <nav className="hidden md:flex space-x-8">
+            <nav className="hidden md:flex space-x-8 ml-8">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -118,7 +114,7 @@ export default function Header() {
             </Link>
           </motion.div>
           
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-8 ml-8">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
