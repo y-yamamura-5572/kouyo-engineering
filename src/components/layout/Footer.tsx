@@ -92,11 +92,11 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700">
                   <Phone size={18} className="mr-3 text-emerald-400" />
-                  <span className="text-slate-300">078-XXX-XXXX</span>
+                  <span className="text-slate-300">078-881-5572</span>
                 </div>
                 <div className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700">
                   <Mail size={18} className="mr-3 text-emerald-400" />
-                  <span className="text-slate-300">info@kouyo-eng.com</span>
+                  <span className="text-slate-300">y_yamamura@kouyoueng.com</span>
                 </div>
               </div>
             </div>
@@ -299,7 +299,7 @@ export default function Footer() {
                     transition: { duration: 0.2 }
                   }}
                 >
-                  078-XXX-XXXX
+                  078-881-5572
                 </motion.span>
               </motion.div>
               <motion.div 
@@ -328,7 +328,7 @@ export default function Footer() {
                     transition: { duration: 0.2 }
                   }}
                 >
-                  info@kouyo-eng.com
+                  y_yamamura@kouyoueng.com
                 </motion.span>
               </motion.div>
             </div>

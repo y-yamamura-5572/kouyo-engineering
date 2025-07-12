@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import AnimatedBackground from './AnimatedBackground'
 
 interface VideoData {
@@ -18,7 +18,7 @@ export default function SwitchingVideoBackground() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const [mounted, setMounted] = useState(false)
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
-  const [videoReady, setVideoReady] = useState(false)
+  const [, setVideoReady] = useState(false)
   const [useFallback, setUseFallback] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
@@ -33,7 +33,7 @@ export default function SwitchingVideoBackground() {
     console.log(`Switching to video ${currentVideoIndex}`)
     
     // 全ての動画を停止
-    videoRefs.current.forEach((video, index) => {
+    videoRefs.current.forEach((video) => {
       if (video) {
         video.pause()
         video.currentTime = 0
@@ -130,23 +130,6 @@ export default function SwitchingVideoBackground() {
       {/* 動画オーバーレイ */}
       <div className="absolute inset-0 bg-slate-900/40 z-20" />
       
-      {/* 動画タイトル表示（オプション） */}
-      <div className="absolute bottom-8 left-8 z-30">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentVideoIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="bg-black/30 backdrop-blur-sm px-4 py-2 rounded-lg"
-          >
-            <p className="text-white/80 text-sm font-medium">
-              {videos[currentVideoIndex].title}
-            </p>
-          </motion.div>
-        </AnimatePresence>
-      </div>
 
       {/* インジケーター */}
       <div className="absolute bottom-8 right-8 z-30 flex space-x-2">
