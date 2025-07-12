@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
+import { Mail, Phone, MapPin, Instagram, ExternalLink } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 export default function Footer() {
@@ -33,63 +33,46 @@ export default function Footer() {
     return (
       <footer className="bg-gradient-to-br from-slate-900 to-slate-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-2xl font-bold mb-4 text-emerald-400">向洋エンジニアリング</h3>
               <p className="text-slate-300 mb-4">
                 社会と共に、未来を創造する
               </p>
               <div className="flex space-x-4">
-                <div className="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center border border-emerald-500/30">
-                  <Mail size={16} className="text-emerald-400" />
-                </div>
-                <div className="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center border border-emerald-500/30">
-                  <Phone size={16} className="text-emerald-400" />
-                </div>
+                <Link
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-20 h-20 bg-pink-500/10 rounded-full flex items-center justify-center border border-pink-500/30 hover:bg-pink-500/20 hover:border-pink-400 transition-colors duration-300"
+                >
+                  <Instagram size={32} className="text-pink-400" />
+                </Link>
               </div>
             </div>
             
-            <div>
-              <h4 className="font-semibold mb-6 text-white">会社情報</h4>
-              <ul className="space-y-3">
-                {[
-                  { name: '会社概要', href: '/about' },
-                  { name: '業務内容', href: '/services' },
-                  { name: '施工実績', href: '/projects' }
-                ].map((item) => (
-                  <li key={item.name}>
-                    <Link href={item.href} className="text-slate-400 hover:text-emerald-400 transition-colors duration-300">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-6 text-white">採用情報</h4>
-              <ul className="space-y-3">
-                {[
-                  { name: '求人情報', href: '/careers' },
-                  { name: 'よくある質問', href: '/careers/faq' },
-                  { name: '福利厚生', href: '/careers/benefits' }
-                ].map((item) => (
-                  <li key={item.name}>
-                    <Link href={item.href} className="text-slate-400 hover:text-emerald-400 transition-colors duration-300">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
             
             <div>
               <h4 className="font-semibold mb-6 text-white">お問い合わせ</h4>
               <div className="space-y-4">
-                <div className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                <Link
+                  href="https://kouyo-eng.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-emerald-500/50 hover:bg-slate-700/50 transition-all duration-300 cursor-pointer"
+                >
+                  <ExternalLink size={18} className="mr-3 text-emerald-400" />
+                  <span className="text-slate-300 hover:text-emerald-400 transition-colors duration-300">メイン企業ホームページ</span>
+                </Link>
+                <Link
+                  href="https://www.google.com/maps/search/?api=1&query=兵庫県神戸市灘区琵琶町3丁目3-8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-emerald-500/50 hover:bg-slate-700/50 transition-all duration-300 cursor-pointer"
+                >
                   <MapPin size={18} className="mr-3 text-emerald-400" />
-                  <span className="text-slate-300">兵庫県神戸市</span>
-                </div>
+                  <span className="text-slate-300 hover:text-emerald-400 transition-colors duration-300">兵庫県神戸市灘区琵琶町3丁目3-8</span>
+                </Link>
                 <div className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700">
                   <Phone size={18} className="mr-3 text-emerald-400" />
                   <span className="text-slate-300">078-881-5572</span>
@@ -119,7 +102,7 @@ export default function Footer() {
       className="bg-gradient-to-br from-slate-900 to-slate-800 text-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div variants={itemVariants}>
             <h3 className="text-2xl font-bold mb-4 text-emerald-400">向洋エンジニアリング</h3>
             <p className="text-slate-300 mb-4">
@@ -134,202 +117,78 @@ export default function Footer() {
                   transition: { duration: 0.6 }
                 }}
                 whileTap={{ scale: 0.8 }}
-                className="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center border border-emerald-500/30 cursor-pointer"
               >
-                <Mail size={16} className="text-emerald-400" />
-              </motion.div>
-              <motion.div
-                whileHover={{ 
-                  scale: 1.5, 
-                  rotate: -720,
-                  y: -5,
-                  transition: { duration: 0.6 }
-                }}
-                whileTap={{ scale: 0.8 }}
-                className="w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center border border-emerald-500/30 cursor-pointer"
-              >
-                <Phone size={16} className="text-emerald-400" />
+                <Link
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-20 h-20 bg-pink-500/10 rounded-full flex items-center justify-center border border-pink-500/30 hover:bg-pink-500/20 hover:border-pink-400 transition-colors duration-300 cursor-pointer"
+                >
+                  <Instagram size={32} className="text-pink-400" />
+                </Link>
               </motion.div>
             </div>
           </motion.div>
           
-          <motion.div variants={itemVariants}>
-            <h4 className="font-semibold mb-6 text-white">会社情報</h4>
-            <ul className="space-y-3">
-              {[
-                { name: '会社概要', href: '/about' },
-                { name: '業務内容', href: '/services' },
-                { name: '施工実績', href: '/projects' }
-              ].map((item) => (
-                <li key={item.name}>
-                  <motion.div
-                    whileHover={{ 
-                      x: 15,
-                      scale: 1.1,
-                      transition: { type: "spring", stiffness: 400 }
-                    }}
-                  >
-                    <Link 
-                      href={item.href} 
-                      className="text-slate-400 hover:text-emerald-400 transition-colors duration-300 inline-flex items-center group"
-                    >
-                      <motion.div
-                        whileHover={{ 
-                          rotate: 360,
-                          scale: 1.3,
-                          transition: { duration: 0.4 }
-                        }}
-                      >
-                        <ArrowRight size={14} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </motion.div>
-                      <motion.span
-                        whileHover={{ 
-                          scale: 1.05,
-                          transition: { duration: 0.2 }
-                        }}
-                      >
-                        {item.name}
-                      </motion.span>
-                    </Link>
-                  </motion.div>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-          
-          <motion.div variants={itemVariants}>
-            <h4 className="font-semibold mb-6 text-white">採用情報</h4>
-            <ul className="space-y-3">
-              {[
-                { name: '求人情報', href: '/careers' },
-                { name: 'よくある質問', href: '/careers/faq' },
-                { name: '福利厚生', href: '/careers/benefits' }
-              ].map((item) => (
-                <li key={item.name}>
-                  <motion.div
-                    whileHover={{ 
-                      x: 15,
-                      scale: 1.1,
-                      transition: { type: "spring", stiffness: 400 }
-                    }}
-                  >
-                    <Link 
-                      href={item.href} 
-                      className="text-slate-400 hover:text-emerald-400 transition-colors duration-300 inline-flex items-center group"
-                    >
-                      <motion.div
-                        whileHover={{ 
-                          rotate: 360,
-                          scale: 1.3,
-                          transition: { duration: 0.4 }
-                        }}
-                      >
-                        <ArrowRight size={14} className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </motion.div>
-                      <motion.span
-                        whileHover={{ 
-                          scale: 1.05,
-                          transition: { duration: 0.2 }
-                        }}
-                      >
-                        {item.name}
-                      </motion.span>
-                    </Link>
-                  </motion.div>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
           
           <motion.div variants={itemVariants}>
             <h4 className="font-semibold mb-6 text-white">お問い合わせ</h4>
             <div className="space-y-4">
               <motion.div 
                 whileHover={{ 
-                  scale: 1.1,
-                  y: -5,
-                  rotate: [0, -1, 1, 0],
-                  transition: { duration: 0.4 }
+                  scale: 1.05,
+                  transition: { duration: 0.3 }
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer"
               >
-                <motion.div
-                  whileHover={{ 
-                    rotate: 360,
-                    scale: 1.3,
-                    transition: { duration: 0.5 }
-                  }}
+                <Link
+                  href="https://kouyo-eng.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-emerald-500/50 hover:bg-slate-700/50 transition-all duration-300 cursor-pointer"
+                >
+                  <ExternalLink size={18} className="mr-3 text-emerald-400" />
+                  <span className="text-slate-300 hover:text-emerald-400 transition-colors duration-300">メイン企業ホームページ</span>
+                </Link>
+              </motion.div>
+              <motion.div 
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.3 }
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href="https://www.google.com/maps/search/?api=1&query=兵庫県神戸市灘区琵琶町3丁目3-8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-emerald-500/50 hover:bg-slate-700/50 transition-all duration-300 cursor-pointer"
                 >
                   <MapPin size={18} className="mr-3 text-emerald-400" />
-                </motion.div>
-                <motion.span 
-                  className="text-slate-300"
-                  whileHover={{ 
-                    scale: 1.05,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  兵庫県神戸市
-                </motion.span>
+                  <span className="text-slate-300 hover:text-emerald-400 transition-colors duration-300">兵庫県神戸市灘区琵琶町3丁目3-8</span>
+                </Link>
               </motion.div>
               <motion.div 
                 whileHover={{ 
-                  scale: 1.1,
-                  y: -5,
-                  rotate: [0, -1, 1, 0],
-                  transition: { duration: 0.4 }
+                  scale: 1.05,
+                  transition: { duration: 0.3 }
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer"
               >
-                <motion.div
-                  whileHover={{ 
-                    rotate: 360,
-                    scale: 1.3,
-                    transition: { duration: 0.5 }
-                  }}
-                >
-                  <Phone size={18} className="mr-3 text-emerald-400" />
-                </motion.div>
-                <motion.span 
-                  className="text-slate-300"
-                  whileHover={{ 
-                    scale: 1.05,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  078-881-5572
-                </motion.span>
+                <Phone size={18} className="mr-3 text-emerald-400" />
+                <span className="text-slate-300">078-881-5572</span>
               </motion.div>
               <motion.div 
                 whileHover={{ 
-                  scale: 1.1,
-                  y: -5,
-                  rotate: [0, -1, 1, 0],
-                  transition: { duration: 0.4 }
+                  scale: 1.05,
+                  transition: { duration: 0.3 }
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center p-3 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer"
               >
-                <motion.div
-                  whileHover={{ 
-                    rotate: 360,
-                    scale: 1.3,
-                    transition: { duration: 0.5 }
-                  }}
-                >
-                  <Mail size={18} className="mr-3 text-emerald-400" />
-                </motion.div>
-                <motion.span 
-                  className="text-slate-300"
-                  whileHover={{ 
-                    scale: 1.05,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  y_yamamura@kouyoueng.com
-                </motion.span>
+                <Mail size={18} className="mr-3 text-emerald-400" />
+                <span className="text-slate-300">y_yamamura@kouyoueng.com</span>
               </motion.div>
             </div>
           </motion.div>
