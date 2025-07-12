@@ -10,8 +10,8 @@ interface VideoData {
 }
 
 const videos: VideoData[] = [
-  { src: '/hero-video.mp4', title: '道路電気工事' },
-  { src: '/hero-video.mp4', title: 'プラント防災電気工事' } // 後で別の動画に変更可能
+  { src: '/hero-road.mp4', title: '道路電気工事' },
+  { src: '/hero-plant.mp4', title: 'プラント防災電気工事' }
 ]
 
 export default function SwitchingVideoBackground() {
@@ -108,7 +108,6 @@ export default function SwitchingVideoBackground() {
           key={index}
           ref={el => { videoRefs.current[index] = el }}
           autoPlay={index === currentVideoIndex}
-          loop
           muted
           playsInline
           initial={{ opacity: 0 }}

@@ -312,7 +312,7 @@ export default function CareersPage() {
                       },
                       {
                         title: '休日',
-                        content: [{ text: '土日祝、年間休日120日', highlight: true, color: 'blue' }]
+                        content: [{ text: '土日祝、年間休日120日以上', highlight: true, color: 'blue' }]
                       },
                       {
                         title: '雇用形態',
@@ -431,7 +431,8 @@ export default function CareersPage() {
                           { text: '定期健康診断' },
                           { text: '各種手当（交通費、資格、出張、住宅、家族）', highlight: true, color: 'blue' },
                           { text: '資格取得支援' },
-                          { text: '退職金制度' }
+                          { text: '退職金制度' },
+                          { text: 'スマートフォン、タブレット支給' }
                         ]
                       },
                       {
