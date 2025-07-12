@@ -37,7 +37,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-slate-100">
-                未経験者歓迎・年間休日120日・充実した福利厚生
+                未経験者歓迎・年間休日120日以上・充実した福利厚生
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
@@ -123,7 +123,7 @@ export default function Home() {
                   transition: { duration: 0.3 }
                 }}
               >
-                未経験者歓迎・年間休日120日・充実した福利厚生
+                未経験者歓迎・年間休日120日以上・充実した福利厚生
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -233,9 +233,6 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              向洋エンジニアリングの特徴
-            </h2>
             <p className="text-lg text-slate-600">
               私たちが選ばれる理由
             </p>
@@ -250,7 +247,7 @@ export default function Home() {
               },
               {
                 icon: Clock,
-                title: '年間休日120日',
+                title: '年間休日120日以上',
                 description: 'ワークライフバランスを重視。しっかりと休んで、しっかりと働く。'
               },
               {
@@ -336,22 +333,18 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              業務内容
-            </h2>
             <p className="text-lg text-slate-300">
-              私たちの専門分野
+              業務の内容
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="flex justify-center">
             <motion.div
-              initial={{ opacity: 0, x: -60, scale: 0.9, rotate: -5 }}
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
               whileInView={{ 
                 opacity: 1, 
-                x: 0, 
-                scale: 1, 
-                rotate: 0,
+                y: 0, 
+                scale: 1,
                 transition: {
                   type: "spring",
                   stiffness: 150,
@@ -361,131 +354,163 @@ export default function Home() {
               transition={{ duration: 1.2 }}
               whileHover={{ 
                 scale: 1.08, 
-                rotate: [0, -2, 2, 0],
                 y: -10,
                 transition: { duration: 0.5 }
               }}
-              className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer"
+              className="relative bg-gradient-to-br from-slate-800/80 via-slate-700/60 to-slate-800/80 backdrop-blur-xl p-10 rounded-3xl border border-slate-600/40 hover:border-emerald-400/60 transition-all duration-500 cursor-pointer max-w-2xl shadow-2xl hover:shadow-emerald-500/20 overflow-hidden group"
             >
+              {/* 背景装飾 */}
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-emerald-400/10 rounded-full blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-500" />
+              
               <motion.h3 
-                className="text-2xl font-bold text-white mb-4"
+                className="relative z-10 text-3xl font-bold bg-gradient-to-r from-white via-emerald-100 to-white bg-clip-text text-transparent mb-6"
                 whileHover={{ 
-                  scale: 1.1,
-                  color: "#34d399",
+                  scale: 1.05,
                   transition: { duration: 0.3 }
                 }}
               >
-                道路電気工事
+                施工管理業務
               </motion.h3>
               <motion.p 
-                className="text-slate-300 mb-6"
+                className="relative z-10 text-slate-200 leading-relaxed mb-8 text-lg"
                 whileHover={{ 
-                  scale: 1.02,
+                  scale: 1.01,
                   transition: { duration: 0.3 }
                 }}
               >
-                道路照明、信号機、道路標識などの電気設備の設置・保守を行います。
-                安全で快適な道路環境の実現に貢献しています。
+                現場での電気等の施工管理を担当していただきます。具体的には、工程の管理から材料の発注、協力業者との連携による工事計画の立案まで、案件の成功に不可欠な業務を一手に引き受けていただきます。先輩社員がしっかりサポートするので、安心してスキルを身につけていただけます。私たちと一緒に、質の高いサービスを提供しましょう。
               </motion.p>
               <motion.div
+                className="relative z-10"
                 whileHover={{ 
-                  x: 15,
+                  x: 10,
                   transition: { type: "spring", stiffness: 400 }
                 }}
               >
                 <Link
                   href="/services"
-                  className="text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center"
+                  className="group/link bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-white font-semibold inline-flex items-center px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-emerald-500/30"
                 >
                   <motion.span
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                   >
                     詳しく見る
                   </motion.span>
                   <motion.div
                     whileHover={{ 
-                      x: 5,
-                      rotate: 360,
-                      transition: { duration: 0.4 }
+                      x: 3,
+                      transition: { duration: 0.2 }
                     }}
+                    className="ml-2"
                   >
-                    <ArrowRight className="ml-1" size={16} />
+                    <ArrowRight size={18} />
                   </motion.div>
                 </Link>
               </motion.div>
             </motion.div>
+          </div>
+        </div>
+      </section>
 
-            <motion.div
-              initial={{ opacity: 0, x: 60, scale: 0.9, rotate: 5 }}
-              whileInView={{ 
-                opacity: 1, 
-                x: 0, 
-                scale: 1, 
-                rotate: 0,
-                transition: {
-                  type: "spring",
-                  stiffness: 150,
-                  damping: 12
-                }
-              }}
-              transition={{ duration: 1.2 }}
-              whileHover={{ 
-                scale: 1.08, 
-                rotate: [0, 2, -2, 0],
-                y: -10,
-                transition: { duration: 0.5 }
-              }}
-              className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer"
-            >
-              <motion.h3 
-                className="text-2xl font-bold text-white mb-4"
-                whileHover={{ 
-                  scale: 1.1,
-                  color: "#34d399",
-                  transition: { duration: 0.3 }
-                }}
-              >
-                プラント防災電気工事
-              </motion.h3>
-              <motion.p 
-                className="text-slate-300 mb-6"
-                whileHover={{ 
-                  scale: 1.02,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                工場やプラントにおける防災設備の電気工事を専門に行います。
-                火災報知設備、避難誘導灯など、安全を守る重要な設備を扱います。
-              </motion.p>
+      {/* 先輩社員からのメッセージセクション */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              先輩社員からのメッセージ
+            </h2>
+            <p className="text-lg text-slate-600">
+              実際に働く先輩の声をお聞きください
+            </p>
+          </motion.div>
+
+          <div className="space-y-12">
+            {/* YouTube動画と先輩社員メッセージ */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* YouTube動画 */}
               <motion.div
-                whileHover={{ 
-                  x: 15,
-                  transition: { type: "spring", stiffness: 400 }
-                }}
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                className="relative"
+              >
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-100 aspect-video">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/5SNPX6PpIvw"
+                    title="先輩社員インタビュー"
+                    style={{ border: 'none' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </motion.div>
+
+              {/* 先輩社員メッセージ */}
+              <motion.div
+                initial={{ opacity: 0, x: 60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="space-y-8"
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="bg-white p-8 rounded-xl shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="flex items-start space-x-6">
+                    <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                      S
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-slate-900 mb-2 text-xl">
+                        2017年入社　S　男性30代
+                      </h4>
+                      <p className="text-slate-600 leading-relaxed text-lg">
+                        &ldquo;成果に応じた報酬が得られるので、がんばった分だけやりがいを感じられます。私は資格取得を目指して勉強中ですが、社長や仲間のサポートがあるので成長しやすいですよ。実務と学びが直結しており、結果が出ればさらに評価されるからモチベーションも高まります。&rdquo;
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            </div>
+            
+            {/* LINEカード - セクション中央 */}
+            <div className="flex justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="bg-gradient-to-r from-green-500 to-green-400 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer max-w-md w-full"
               >
                 <Link
-                  href="/services"
-                  className="text-emerald-400 hover:text-emerald-300 font-semibold inline-flex items-center"
+                  href="https://lin.ee/7p7uVgs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center text-white"
                 >
-                  <motion.span
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    詳しく見る
-                  </motion.span>
-                  <motion.div
-                    whileHover={{ 
-                      x: 5,
-                      rotate: 360,
-                      transition: { duration: 0.4 }
-                    }}
-                  >
-                    <ArrowRight className="ml-1" size={16} />
-                  </motion.div>
+                  <div className="flex items-center justify-center space-x-4">
+                    <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                      <span className="text-green-500 font-bold text-xl">L</span>
+                    </div>
+                    <span className="text-2xl font-bold">LINEできいてみる</span>
+                  </div>
+                  <p className="text-green-100 mt-3 text-base">
+                    気軽に質問や相談ができます
+                  </p>
                 </Link>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
