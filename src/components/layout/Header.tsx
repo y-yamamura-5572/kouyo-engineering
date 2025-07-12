@@ -91,22 +91,30 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           <motion.div
             whileHover={{ 
-              scale: 1.15, 
-              rotate: [0, -5, 5, -3, 3, 0],
-              transition: { duration: 0.6 }
+              scale: 1.05,
+              transition: { duration: 0.3, ease: "easeOut" }
             }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <Link href="/" className="flex items-center">
-              <Image
-                src="/logo.png"
-                alt="向洋エンジニアリング"
-                width={180}
-                height={40}
-                className="h-8 md:h-10 w-auto"
-                priority
-              />
+              <motion.div
+                whileHover={{
+                  filter: "brightness(1.1)",
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <Image
+                  src="/logo.png"
+                  alt="向洋エンジニアリング"
+                  width={180}
+                  height={40}
+                  className="h-8 md:h-10 w-auto transition-all duration-300"
+                  priority
+                />
+              </motion.div>
             </Link>
           </motion.div>
           
@@ -114,27 +122,35 @@ export default function Header() {
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
-                initial={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
                 whileHover={{ 
-                  y: -8, 
-                  scale: 1.1,
-                  rotate: [0, -2, 2, 0],
-                  transition: { duration: 0.4 }
+                  y: -2,
+                  transition: { duration: 0.2, ease: "easeOut" }
                 }}
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Link
                   href={item.href}
-                  className="text-slate-700 hover:text-emerald-600 transition-all duration-300 font-medium relative group"
+                  className="text-slate-700 hover:text-emerald-600 transition-colors duration-300 font-medium relative group py-2"
                 >
-                  {item.name}
+                  <motion.span
+                    whileHover={{
+                      scale: 1.02,
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    {item.name}
+                  </motion.span>
                   <motion.span 
-                    className="absolute -bottom-1 left-0 h-0.5 bg-emerald-600"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3 }}
+                    className="absolute -bottom-0 left-0 h-0.5 bg-emerald-600"
+                    initial={{ width: 0, opacity: 0 }}
+                    whileHover={{ 
+                      width: "100%", 
+                      opacity: 1,
+                      transition: { duration: 0.3, ease: "easeOut" }
+                    }}
                   />
                 </Link>
               </motion.div>

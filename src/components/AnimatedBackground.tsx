@@ -11,7 +11,7 @@ export default function AnimatedBackground() {
     setIsClient(true)
     
     // クライアントサイドでのみパーティクルの位置を生成
-    const particleData = Array.from({ length: 20 }, (_, i) => ({
+    const particleData = Array.from({ length: 20 }, () => ({
       left: Math.random() * 100,
       top: Math.random() * 100,
       duration: 3 + Math.random() * 2,

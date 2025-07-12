@@ -6,7 +6,7 @@ import { ArrowRight, Shield, Users, Clock, Award } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import ClientOnly from '@/components/ClientOnly'
 
-const VideoBackground = dynamic(() => import('@/components/SimpleVideoBackground'), {
+const VideoBackground = dynamic(() => import('@/components/SwitchingVideoBackground'), {
   ssr: false,
   loading: () => (
     <div className="absolute inset-0 z-0">

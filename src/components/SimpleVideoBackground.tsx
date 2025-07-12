@@ -8,7 +8,6 @@ export default function SimpleVideoBackground() {
   const [mounted, setMounted] = useState(false)
   const [videoReady, setVideoReady] = useState(false)
   const [useFallback, setUseFallback] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -27,14 +26,13 @@ export default function SimpleVideoBackground() {
       setVideoReady(true)
       video.play().then(() => {
         console.log('Video started playing')
-        setIsPlaying(true)
       }).catch(err => {
         console.error('Video play failed:', err)
         setUseFallback(true)
       })
     }
 
-    const handleError = (e: any) => {
+    const handleError = (e: Event) => {
       console.error('Video error:', e)
       setUseFallback(true)
     }
@@ -46,12 +44,10 @@ export default function SimpleVideoBackground() {
 
     const handlePlay = () => {
       console.log('Video play event fired')
-      setIsPlaying(true)
     }
 
     const handlePause = () => {
       console.log('Video pause event fired')
-      setIsPlaying(false)
     }
 
     video.addEventListener('canplay', handleCanPlay)
