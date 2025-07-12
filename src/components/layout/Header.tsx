@@ -26,7 +26,7 @@ export default function Header() {
             <Link href="/" className="flex items-center">
               <Image
                 src="/logo.png"
-                alt="向洋エンジニアリング"
+                alt="向洋エンジニアリング株式会社 - 神戸市の電気工事会社"
                 width={180}
                 height={40}
                 className="h-8 md:h-10 w-auto"
@@ -104,7 +104,7 @@ export default function Header() {
               >
                 <Image
                   src="/logo.png"
-                  alt="向洋エンジニアリング"
+                  alt="向洋エンジニアリング株式会社 - 神戸市の電気工事会社"
                   width={180}
                   height={40}
                   className="h-8 md:h-10 w-auto transition-all duration-300"

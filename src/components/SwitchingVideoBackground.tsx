@@ -10,8 +10,8 @@ interface VideoData {
 }
 
 const videos: VideoData[] = [
-  { src: '/hero-road.mp4', title: '道路電気工事' },
-  { src: '/hero-plant.mp4', title: 'プラント防災電気工事' }
+  { src: '/hero-road.mp4', title: '非常用設備工事' },
+  { src: '/hero-plant.mp4', title: '施工管理業務' }
 ]
 
 export default function SwitchingVideoBackground() {
@@ -29,8 +29,6 @@ export default function SwitchingVideoBackground() {
   // 動画切り替え管理（シンプル版）
   useEffect(() => {
     if (!mounted) return
-    
-    console.log(`Switching to video ${currentVideoIndex}`)
     
     // 全ての動画を停止
     videoRefs.current.forEach((video) => {
@@ -50,15 +48,12 @@ export default function SwitchingVideoBackground() {
         currentVideo.currentTime = 0
         await currentVideo.play()
         setVideoReady(true)
-        console.log(`Video ${currentVideoIndex} is now playing`)
       } catch (err) {
-        console.error(`Video ${currentVideoIndex} play failed:`, err)
         setUseFallback(true)
       }
     }
 
     const handleEnded = () => {
-      console.log(`Video ${currentVideoIndex} ended`)
       if (!isTransitioning) {
         setIsTransitioning(true)
         setCurrentVideoIndex(prev => (prev + 1) % videos.length)

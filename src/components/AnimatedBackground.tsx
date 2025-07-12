@@ -4,22 +4,29 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 
 export default function AnimatedBackground() {
-  const [isClient, setIsClient] = useState(false)
-  const [particles, setParticles] = useState<Array<{left: number, top: number, duration: number, delay: number}>>([])
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setIsClient(true)
-    
-    // クライアントサイドでのみパーティクルの位置を生成
-    const particleData = Array.from({ length: 20 }, () => ({
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      duration: 3 + Math.random() * 2,
-      delay: Math.random() * 2
-    }))
-    
-    setParticles(particleData)
+    setMounted(true)
   }, [])
+
+  // サーバーサイドでは基本背景のみ
+  if (!mounted) {
+    return (
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+        <div className="absolute inset-0 bg-slate-900/60" />
+      </div>
+    )
+  }
+
+  // クライアントサイドでパーティクルを生成
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    left: (i * 5.26) % 100, // 固定値ベースの分散
+    top: (i * 7.89) % 100,
+    duration: 3 + (i % 3),
+    delay: (i % 4) * 0.5
+  }))
 
   return (
     <div className="absolute inset-0 z-0">
@@ -27,8 +34,7 @@ export default function AnimatedBackground() {
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
       
       {/* アニメーション背景パターン */}
-      {isClient && (
-        <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-20">
           <motion.div
             className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl"
             animate={{
@@ -72,12 +78,10 @@ export default function AnimatedBackground() {
             }}
           />
         </div>
-      )}
       
       {/* パーティクルのような効果 */}
-      {isClient && (
-        <div className="absolute inset-0 opacity-10">
-          {particles.map((particle, i) => (
+      <div className="absolute inset-0 opacity-10">
+        {particles.map((particle, i) => (
             <motion.div
               key={i}
               className="absolute w-2 h-2 bg-white rounded-full"
@@ -97,9 +101,8 @@ export default function AnimatedBackground() {
                 ease: "easeInOut"
               }}
             />
-          ))}
-        </div>
-      )}
+        ))}
+      </div>
       
       {/* オーバーレイ */}
       <div className="absolute inset-0 bg-slate-900/60" />
