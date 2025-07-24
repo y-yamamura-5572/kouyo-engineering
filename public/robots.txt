@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kouyo-engineering.com/sitemap.xml
+Sitemap: https://kouyo-engineering.vercel.app/sitemap.xml

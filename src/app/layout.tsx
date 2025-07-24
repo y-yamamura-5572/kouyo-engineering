@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "向洋エンジニアリング | 神戸市電気工事",
     description: "神戸市の向洋エンジニアリング。電気工事のスペシャリスト。未経験者歓迎、年間休日120日以上。",
-    url: "https://kouyo-engineering.com",
+    url: "https://kouyo-engineering.vercel.app",
     siteName: "向洋エンジニアリング",
     images: [
       {

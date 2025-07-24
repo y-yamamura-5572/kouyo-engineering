@@ -21,12 +21,13 @@ npm run lint         # Run ESLint
 ## Technology Stack
 
 - **Framework**: Next.js 15 with App Router
+- **React**: Version 19.0.0 (latest)
 - **Styling**: Tailwind CSS (v4) with PostCSS
-- **Animations**: Framer Motion
+- **Animations**: Framer Motion (v12.23.3)
 - **Icons**: Lucide React
-- **Forms**: React Hook Form with Zod validation
+- **Forms**: React Hook Form with Zod validation (configured but not actively used)
 - **Utilities**: clsx, tailwind-merge
-- **Development**: TypeScript, ESLint
+- **Development**: TypeScript (strict mode), ESLint with Next.js config
 
 ## Code Architecture
 
@@ -36,19 +37,20 @@ src/
 ├── app/                 # Next.js App Router pages
 │   ├── layout.tsx      # Root layout with Japanese font (Noto Sans JP)
 │   ├── page.tsx        # Home page with hero section, features, and messaging
-│   ├── careers/        # Recruitment page
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   └── globals.css     # Global styles
+│   ├── sitemap.ts      # SEO sitemap generation
+│   ├── globals.css     # Global Tailwind styles
+│   └── careers/        # Recruitment page
+│       ├── layout.tsx
+│       └── page.tsx
 ├── components/
 │   ├── layout/
 │   │   ├── Header.tsx  # Navigation with mobile menu
 │   │   └── Footer.tsx  # Footer with contact information
-│   ├── AnimatedBackground.tsx
-│   ├── ClientOnly.tsx  # Client-side only rendering wrapper
-│   └── SwitchingVideoBackground.tsx  # Video background switcher
+│   ├── AnimatedBackground.tsx      # Fallback animated background
+│   ├── ClientOnly.tsx              # Client-side only rendering wrapper
+│   └── SwitchingVideoBackground.tsx # Video background switcher
 └── lib/
-    └── utils.ts        # Utility functions
+    └── utils.ts        # Utility functions (clsx + tailwind-merge)
 ```
 
 ### Key Components
@@ -85,11 +87,32 @@ src/
 
 ## Development Notes
 
-- The application uses client-side rendering for animation components
-- Video backgrounds have fallback systems for performance
+- The application uses client-side rendering for animation components (wrapped in `ClientOnly`)
+- Video backgrounds have fallback systems for performance (switches to animated gradients)
 - Mobile responsiveness is crucial for Japanese user experience
-- Animation performance is optimized with proper loading states
+- Animation performance is optimized with proper loading states and Framer Motion best practices
 - External links include proper `rel="noopener noreferrer"` attributes
+- TypeScript path mapping configured: `@/*` maps to `./src/*`
+- All animations use Framer Motion with consistent patterns for entrance, hover, and micro-interactions
+
+## Important Patterns
+
+### Animation Architecture
+- **Entrance animations**: Use `initial={{ opacity: 0, y: 20 }}` with `animate={{ opacity: 1, y: 0 }}`
+- **Hover effects**: Consistent scale (1.05) and brightness transformations
+- **Client-side only**: Wrap animation components in `<ClientOnly>` to prevent hydration issues
+- **Video backgrounds**: Two videos (hero-road.mp4, hero-plant.mp4) cycle automatically with manual controls
+
+### Styling Conventions
+- **Color scheme**: Dark slate backgrounds (slate-900, slate-800) with emerald accents (emerald-500)
+- **Typography**: Noto Sans JP for Japanese text, system fonts for fallback
+- **Responsive**: Mobile-first with `sm:`, `md:`, `lg:`, `xl:` breakpoints
+- **Effects**: Backdrop blur (`backdrop-blur-sm`) with gradient overlays for glass effects
+
+### Content Structure
+- **Japanese market focus**: All content in Japanese, LINE integration for contact
+- **SEO optimized**: Comprehensive metadata in layout.tsx, sitemap.ts generation
+- **Contact integration**: LINE links with proper Japanese social conventions
 
 ## Testing
 
