@@ -35,6 +35,13 @@ export const metadata: Metadata = {
     description: "神戸市の向洋エンジニアリング。電気工事のスペシャリスト。未経験者歓迎、年間休日120日以上。",
     images: ["/logo.png"],
   },
+  verification: {
+    google: "V1A40IjUCq8WthjUKhX3VcoXY2G7JcmLdbfueQSj_U0",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
