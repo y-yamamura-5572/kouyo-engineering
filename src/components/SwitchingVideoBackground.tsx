@@ -11,7 +11,8 @@ interface VideoData {
 
 const videos: VideoData[] = [
   { src: '/hero-road.mp4', title: '非常用設備工事' },
-  { src: '/hero-plant.mp4', title: '施工管理業務' }
+  { src: '/hero-plant.mp4', title: '施工管理業務' },
+  { src: '/hero-addon.mp4', title: '追加動画' }
 ]
 
 export default function SwitchingVideoBackground() {

@@ -10,6 +10,7 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kouyo-engineering.vercel.app"),
   title: "向洋エンジニアリング | 神戸市電気工事",
   description: "神戸市の向洋エンジニアリング。電気工事のスペシャリスト。未経験者歓迎、年間休日120日以上。",
   keywords: "電気工事,プラント,防災,神戸,兵庫,採用,求人",

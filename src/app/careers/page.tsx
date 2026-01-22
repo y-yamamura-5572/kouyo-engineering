@@ -295,7 +295,8 @@ export default function CareersPage() {
                         content: [
                           { text: '月給 35万円～40万円', highlight: true },
                           { text: '※未経験の場合は月給28万円～' },
-                          { text: '報奨金：3.8～3.9か月分', highlight: true, color: 'emerald' }
+                          { text: '賞与：3.8～3.9か月分', highlight: true, color: 'emerald' },
+                          { text: '業績が好調の場合は別途報奨金あり' }
                         ]
                       },
                       {
@@ -333,19 +334,130 @@ export default function CareersPage() {
                       >
                         <h4 className="font-bold text-emerald-300 mb-3 text-lg">{section.title}</h4>
                         <div className="space-y-2">
-                          {section.content.map((item, i) => (
-                            <p key={i} className={`${
-                              'highlight' in item && item.highlight 
-                                ? 'color' in item && item.color === 'emerald' 
-                                  ? 'text-emerald-300 font-semibold' 
-                                  : 'color' in item && item.color === 'blue' 
-                                    ? 'text-blue-300 font-semibold'
-                                    : 'text-white font-semibold'
-                                : 'text-slate-300'
-                            }`}>
-                              {item.text}
-                            </p>
-                          ))}
+                          {section.content.map((item, i) => {
+                            // 報奨金の項目に特別なアニメーションを適用
+                            const isBonusText = item.text.includes('業績が好調');
+                            
+                            if (isBonusText) {
+                              return (
+                                <motion.p
+                                  key={i}
+                                  initial={{ opacity: 0, scale: 0.9 }}
+                                  whileInView={{ opacity: 1, scale: 1 }}
+                                  viewport={{ once: true }}
+                                  animate={{
+                                    scale: [1, 1.02, 1],
+                                  }}
+                                  transition={{
+                                    duration: 3,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                    delay: 0.8 + i * 0.1
+                                  }}
+                                  className="relative py-3 px-4 rounded-xl bg-gradient-to-r from-amber-900/30 via-yellow-800/25 to-amber-900/30 border border-amber-500/50 overflow-hidden group"
+                                >
+                                  {/* シャイン効果 - 光が流れる */}
+                                  <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-300/40 to-transparent"
+                                    animate={{
+                                      x: ['-100%', '200%'],
+                                    }}
+                                    transition={{
+                                      duration: 3,
+                                      repeat: Infinity,
+                                      ease: "linear",
+                                      repeatDelay: 1,
+                                    }}
+                                  />
+                                  
+                                  {/* パルスグロー効果 */}
+                                  <motion.div
+                                    className="absolute inset-0 rounded-xl"
+                                    animate={{
+                                      boxShadow: [
+                                        "0 0 20px rgba(245, 158, 11, 0.4), inset 0 0 20px rgba(245, 158, 11, 0.1)",
+                                        "0 0 40px rgba(245, 158, 11, 0.7), inset 0 0 30px rgba(245, 158, 11, 0.2)",
+                                        "0 0 20px rgba(245, 158, 11, 0.4), inset 0 0 20px rgba(245, 158, 11, 0.1)",
+                                      ],
+                                    }}
+                                    transition={{
+                                      duration: 2.5,
+                                      repeat: Infinity,
+                                      ease: "easeInOut",
+                                    }}
+                                  />
+                                  
+                                  {/* ゴールドグラデーションテキスト */}
+                                  <span className="relative z-20 font-semibold text-amber-300 inline-block w-full">
+                                    <motion.span
+                                      style={{ 
+                                        display: 'inline-block',
+                                        color: '#fbbf24', // デフォルトのゴールドカラー
+                                      }}
+                                      animate={{
+                                        color: [
+                                          '#fbbf24', // amber-400 - 明るいゴールド
+                                          '#f59e0b', // amber-500 - ミディアムゴールド
+                                          '#d97706', // amber-600 - ダークゴールド
+                                          '#f59e0b', // amber-500
+                                          '#fbbf24', // amber-400
+                                        ],
+                                        textShadow: [
+                                          '0 0 15px rgba(251, 191, 36, 0.8), 0 0 25px rgba(245, 158, 11, 0.6), 0 2px 4px rgba(0, 0, 0, 0.5)',
+                                          '0 0 20px rgba(251, 191, 36, 1), 0 0 35px rgba(245, 158, 11, 0.8), 0 2px 6px rgba(0, 0, 0, 0.7)',
+                                          '0 0 15px rgba(251, 191, 36, 0.8), 0 0 25px rgba(245, 158, 11, 0.6), 0 2px 4px rgba(0, 0, 0, 0.5)',
+                                        ],
+                                      }}
+                                      transition={{
+                                        duration: 3,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                      }}
+                                    >
+                                      {item.text}
+                                    </motion.span>
+                                  </span>
+                                  
+                                  {/* 装飾的な光の粒子 */}
+                                  {[...Array(3)].map((_, idx) => (
+                                    <motion.div
+                                      key={idx}
+                                      className="absolute w-1.5 h-1.5 bg-amber-400 rounded-full"
+                                      style={{
+                                        left: `${20 + idx * 30}%`,
+                                        top: '50%',
+                                      }}
+                                      animate={{
+                                        y: [0, -15, 0],
+                                        opacity: [0.3, 1, 0.3],
+                                        scale: [0.5, 1, 0.5],
+                                      }}
+                                      transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        delay: idx * 0.4,
+                                        ease: "easeInOut",
+                                      }}
+                                    />
+                                  ))}
+                                </motion.p>
+                              );
+                            }
+                            
+                            return (
+                              <p key={i} className={`${
+                                'highlight' in item && item.highlight 
+                                  ? 'color' in item && item.color === 'emerald' 
+                                    ? 'text-emerald-300 font-semibold' 
+                                    : 'color' in item && item.color === 'blue' 
+                                      ? 'text-blue-300 font-semibold'
+                                      : 'text-white font-semibold'
+                                  : 'text-slate-300'
+                              }`}>
+                                {item.text}
+                              </p>
+                            );
+                          })}
                         </div>
                       </motion.div>
                     ))}
