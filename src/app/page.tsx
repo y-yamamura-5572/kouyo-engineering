@@ -16,6 +16,29 @@ const VideoBackground = dynamic(() => import('@/components/SwitchingVideoBackgro
   )
 })
 
+const features = [
+  {
+    icon: Users,
+    title: '未経験者歓迎',
+    description: '経験がなくても安心。充実した研修制度でサポートします。'
+  },
+  {
+    icon: Clock,
+    title: '年間休日120日以上',
+    description: 'ワークライフバランスを重視。しっかりと休んで、しっかりと働く。'
+  },
+  {
+    icon: Shield,
+    title: '安全第一',
+    description: '徹底した安全管理で、作業員の安全を最優先に考えています。'
+  },
+  {
+    icon: Award,
+    title: '資格取得支援',
+    description: '電気工事士などの資格取得を会社が全面的にバックアップします。'
+  }
+]
+
 export default function Home() {
   return (
     <div className="bg-white">
@@ -208,28 +231,7 @@ export default function Home() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Users,
-                title: '未経験者歓迎',
-                description: '経験がなくても安心。充実した研修制度でサポートします。'
-              },
-              {
-                icon: Clock,
-                title: '年間休日120日以上',
-                description: 'ワークライフバランスを重視。しっかりと休んで、しっかりと働く。'
-              },
-              {
-                icon: Shield,
-                title: '安全第一',
-                description: '徹底した安全管理で、作業員の安全を最優先に考えています。'
-              },
-              {
-                icon: Award,
-                title: '資格取得支援',
-                description: '電気工事士などの資格取得を会社が全面的にバックアップします。'
-              }
-            ].map((feature, index) => (
+            {features.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50, scale: 0.8, rotate: -10 }}
@@ -411,10 +413,10 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="relative"
               >
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-100 aspect-video">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-100 aspect-[9/16] max-w-sm mx-auto">
                   <iframe
                     className="w-full h-full"
-                    src="https://www.youtube.com/embed/5SNPX6PpIvw"
+                    src="https://www.youtube.com/embed/rOGTAqbKKAk"
                     title="先輩社員インタビュー"
                     style={{ border: 'none' }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

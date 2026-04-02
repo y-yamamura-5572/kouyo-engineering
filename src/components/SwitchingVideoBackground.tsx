@@ -19,9 +19,8 @@ export default function SwitchingVideoBackground() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const [mounted, setMounted] = useState(false)
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
-  const [, setVideoReady] = useState(false)
   const [useFallback, setUseFallback] = useState(false)
-  const [isTransitioning, setIsTransitioning] = useState(false)
+  const isTransitioningRef = useRef(false)
 
   useEffect(() => {
     setMounted(true)
@@ -45,20 +44,18 @@ export default function SwitchingVideoBackground() {
 
     const playCurrentVideo = async () => {
       try {
-        setVideoReady(false)
         currentVideo.currentTime = 0
         await currentVideo.play()
-        setVideoReady(true)
       } catch {
         setUseFallback(true)
       }
     }
 
     const handleEnded = () => {
-      if (!isTransitioning) {
-        setIsTransitioning(true)
+      if (!isTransitioningRef.current) {
+        isTransitioningRef.current = true
         setCurrentVideoIndex(prev => (prev + 1) % videos.length)
-        setTimeout(() => setIsTransitioning(false), 500)
+        setTimeout(() => { isTransitioningRef.current = false }, 500)
       }
     }
 
@@ -78,7 +75,7 @@ export default function SwitchingVideoBackground() {
     return () => {
       currentVideo.removeEventListener('ended', handleEnded)
     }
-  }, [mounted, currentVideoIndex, isTransitioning])
+  }, [mounted, currentVideoIndex])
 
   if (!mounted) {
     return (
@@ -132,11 +129,10 @@ export default function SwitchingVideoBackground() {
           <motion.button
             key={index}
             onClick={() => {
-              if (!isTransitioning && index !== currentVideoIndex) {
-                setIsTransitioning(true)
-                setVideoReady(false)
+              if (!isTransitioningRef.current && index !== currentVideoIndex) {
+                isTransitioningRef.current = true
                 setCurrentVideoIndex(index)
-                setTimeout(() => setIsTransitioning(false), 1000)
+                setTimeout(() => { isTransitioningRef.current = false }, 1000)
               }
             }}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
